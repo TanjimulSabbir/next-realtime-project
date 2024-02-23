@@ -12,3 +12,10 @@
     background: var(--text);
     color: var(--bg);
 }
+.logout{
+    background: var(--text);
+    color: var(--bg);
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}

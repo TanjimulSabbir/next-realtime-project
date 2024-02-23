@@ -12,6 +12,8 @@ export default function Links() {
     const admin = false;
 
     const handleLogin = () => {
+        const logoutEnsurity = confirm("Do you want to logout?")
+        if (!logoutEnsurity) return null;
         setLoginState(false)
         return toast("Logout successful");
     }
@@ -23,7 +25,9 @@ export default function Links() {
                 LinksList.map(link => {
                     if (!admin && link.title === "Admin") return null;
                     if (!loginState && link.title === "Login") return null;
-                    if (loginState && link.title === "Login") return <Link key={link.title} href="/" onClick={() => handleLogin()}>Logout</Link>;
+                    if (loginState && link.title === "Login") return <Link className={`${styles}
+                    ${styles.logout}`} key={link.title} href="/" onClick={() => handleLogin()}>Logout</Link>;
+
                     return (
                         <Link
                             key={link.title}
