@@ -3,12 +3,18 @@ import Link from 'next/link'
 import { LinksList } from "./LinksList"
 import styles from "./navbar.module.css"
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function Links() {
+    const [loginState, setLoginState] = useState(true)
     const pathName = usePathname();
     const admin = false;
-    const login = true;
 
+    const handleLogin = () => {
+        setLoginState(false)
+        return toast("Logout successful");
+    }
     return (
         <div className="flex items-center gap-[10px]">
 
@@ -16,7 +22,9 @@ export default function Links() {
                 LinksList.map(link => {
                     const privateLink = ["Admin", "Login"]
                     if (!admin && link.title === "Admin") return null;
-                    if (!login && link.title === "Login") return null;
+                    if (link.title && !loginState === "Login") return null;
+                    if (link.title && loginState === "Login") return <Link href="/" onClick={() => handleLogin()}>Logout</Link>;
+
                     return (
                         <Link
                             key={link.title}
@@ -27,6 +35,7 @@ export default function Links() {
                     )
                 })
             }
+
         </div>
     )
 }
