@@ -15,16 +15,15 @@ export default function Links() {
         setLoginState(false)
         return toast("Logout successful");
     }
+    console.log(loginState, "loginState");
     return (
         <div className="flex items-center gap-[10px]">
 
             {
                 LinksList.map(link => {
-                    const privateLink = ["Admin", "Login"]
                     if (!admin && link.title === "Admin") return null;
-                    if (link.title && !loginState === "Login") return null;
-                    if (link.title && loginState === "Login") return <Link href="/" onClick={() => handleLogin()}>Logout</Link>;
-
+                    if (!loginState && link.title === "Login") return null;
+                    if (loginState && link.title === "Login") return <Link key={link.title} href="/" onClick={() => handleLogin()}>Logout</Link>;
                     return (
                         <Link
                             key={link.title}
