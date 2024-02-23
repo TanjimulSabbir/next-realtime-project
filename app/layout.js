@@ -13,9 +13,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Navbar />
-      <body className={inter.className}>{children}</body>
-      <Footer />
+      <body className={` ${inter.className}`}>
+        <div className="container flex flex-col justify-between mx-auto px-12">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
+      </body>
+
     </html>
   );
 }
