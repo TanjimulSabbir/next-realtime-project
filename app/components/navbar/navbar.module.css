@@ -1,0 +1,14 @@
+.menuBtn {
+    min-width: 100px;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    gap: 10px;
+    text-align: center;
+
+}
+
+.activeLink {
+    background: var(--text);
+    color: var(--bg);
+}

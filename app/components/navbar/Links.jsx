@@ -1,5 +1,7 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
+import styles from "./navbar.module.css"
+import { usePathname } from 'next/navigation';
 
 export default function Links() {
     const Links = [
@@ -25,11 +27,20 @@ export default function Links() {
         },
 
     ]
+    const pathName = usePathname();
+    console.log(pathName)
     return (
-        <>
+        <div className="flex items-center gap-[10px]">
+
             {
-                Links.map(link => <Link key={link.title} href={link.path}>{link.title}</Link>)
+                Links.map(link =>
+                    <Link
+                        key={link.title}
+                        href={link.path}
+                        className={`${styles.menuBtn} ${pathName === link.path && styles.activeLink}`}>
+                        {link.title}
+                    </Link>)
             }
-        </>
+        </div>
     )
 }
